@@ -1,0 +1,15 @@
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  db: blog_db
+  user: root
+  password: 123456
+logger: 
+  level: info
+  prefix: "[blog]"
+  show_line: true
+system:
+  host: 127.0.0.1
+  port: 8080
+  env: dev
+  
