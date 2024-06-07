@@ -40,8 +40,9 @@ func Fail(data any, msg string, c *gin.Context) {
 func FailMessage(msg string, c *gin.Context) {
 	Result(ERROR, map[string]any{}, msg, c)
 }
+
 func FailCode(code int, c *gin.Context) {
-	msg, ok := ErrorMap[ErrorCode(code)]
+	msg, ok := ErrorMaps[ErrorCode(code)]
 	if ok {
 		Result(code, map[string]any{}, msg, c)
 		return

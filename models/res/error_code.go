@@ -1,15 +1,32 @@
 package res
 
-type ErrorCode int
-
-const (
-	SettingError      ErrorCode = 1001 //系统错误
-	MarkdownhtmlError ErrorCode = 1101 //markdown转换错误
+import (
+	"blog_server/global"
+	"encoding/json"
+	"os"
 )
 
-var (
-	ErrorMap = map[ErrorCode]string{
-		SettingError:      "系统错误",
-		MarkdownhtmlError: "markdown转换错误",
+type ErrorCode int
+
+const file = "models/res/error_code.json"
+
+type ErrorMap map[ErrorCode]string
+
+func InitErrorCode() {
+	data, err := os.ReadFile(file)
+	if err != nil {
+		global.LOG.Error(err)
+		return
 	}
+	var errMap = ErrorMap{}
+	err = json.Unmarshal(data, &errMap)
+	if err != nil {
+		global.LOG.Error(err)
+		return
+	}
+	ErrorMaps = errMap
+}
+
+var (
+	ErrorMaps map[ErrorCode]string
 )

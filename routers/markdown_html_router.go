@@ -5,5 +5,5 @@ import (
 )
 
 func (r RouterGroup) MarkdownhtmRouter() {
-	r.GET("/md_html", api.ApiGroupAPP.MARKDOWNHTMLAPI.MarkdownHtmlInfo)
+	r.POST("/md_html", api.ApiGroupAPP.MARKDOWNHTMLAPI.MarkdownHtmlInfo)
 }
