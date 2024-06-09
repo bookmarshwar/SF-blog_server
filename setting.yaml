@@ -4,7 +4,7 @@ mysql:
   db: blog_db
   user: root
   password: 123456
-  dbconfig:
+  dbconfig: charset=utf8&parseTime=true
   maxidleconns: 10
   maxopenconns: 100
 logger: 

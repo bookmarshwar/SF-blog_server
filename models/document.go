@@ -1,13 +1,15 @@
 package models
 
-import "time"
+import (
+	"gorm.io/gorm"
+)
 
 type DocumentModel struct {
-	DocID      int       //id
-	Briefly    string    //摘要
-	Title      string    //标题
-	Cover      string    //封面
-	CreateTime time.Time //创建时间
-	Path       string    //路径
-	AuthorId   int       //作者id
+	gorm.Model
+	Briefly string `gorm:"size:255" json:"briefly"` //摘要
+	Title   string `gorm:"size:256" json:"title"`   //标题
+	Cover   string `gorm:"size:256" json:"cover"`   //封面
+	Path    string `gorm:"size:256" json:"-"`       //路径
+	//AuthorId   int       `gorm:""`          //作者id
+	//Tag
 }

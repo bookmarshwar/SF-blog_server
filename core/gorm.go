@@ -2,6 +2,7 @@ package core
 
 import (
 	"blog_server/global"
+	"blog_server/models"
 	"time"
 
 	"gorm.io/driver/mysql"
@@ -38,6 +39,7 @@ func InitGorm() *gorm.DB {
 	sqlDB.SetMaxIdleConns(global.CONFIG.Mysql.MaxIdleConns)
 	sqlDB.SetMaxOpenConns(global.CONFIG.Mysql.MaxOpenConns)
 	sqlDB.SetConnMaxLifetime(time.Hour * 4) //连接最大生命周期
+	db.AutoMigrate(&models.DocumentModel{})
 	return db
 
 }

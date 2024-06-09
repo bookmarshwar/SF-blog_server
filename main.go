@@ -11,7 +11,7 @@ import (
 func main() {
 	core.InitConf()                //配置文件初始化
 	global.LOG = core.InitLogger() //初始化日志
-	//global.DB = core.InitGorm()    //连接数据库
+	global.DB = core.InitGorm()    //连接数据库
 	router := routers.InitRouter()
 	fmt.Println(time.Now())
 	router.Run()
