@@ -15,4 +15,7 @@ system:
   host: 127.0.0.1
   port: 8080
   env: dev
+jwt:
+  deadtime: 3600 
+  signingkey: folk is fucking stand
   

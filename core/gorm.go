@@ -39,7 +39,11 @@ func InitGorm() *gorm.DB {
 	sqlDB.SetMaxIdleConns(global.CONFIG.Mysql.MaxIdleConns)
 	sqlDB.SetMaxOpenConns(global.CONFIG.Mysql.MaxOpenConns)
 	sqlDB.SetConnMaxLifetime(time.Hour * 4) //连接最大生命周期
-	db.AutoMigrate(&models.DocumentModel{})
+	InitDB(db)
 	return db
 
+}
+func InitDB(db *gorm.DB) {
+	db.AutoMigrate(&models.DocumentModel{})
+	db.AutoMigrate(&models.UserModel{})
 }

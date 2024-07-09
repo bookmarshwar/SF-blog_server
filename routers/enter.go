@@ -13,12 +13,12 @@ type RouterGroup struct {
 func InitRouter() *gin.Engine {
 	router := gin.Default()
 	res.InitErrorCode()
-	router.Static("/assets", "./assets")
-	router.Static("/res/cover_file", "./res/cover_file")
+	router.Static("/res", "./res")
 	apiRouterGroup := router.Group("api")
 	routerGroupApp := RouterGroup{apiRouterGroup}
 	routerGroupApp.SettingRouter()
 	routerGroupApp.MarkdownhtmRouter()
 	routerGroupApp.DocumentRouter()
+	routerGroupApp.UserRouter()
 	return router
 }
