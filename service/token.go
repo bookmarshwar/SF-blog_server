@@ -23,5 +23,5 @@ func CreateToken(user *models.UserModel) (string, error) { //创建token
 	}
 
 	t := jwt.NewWithClaims(jwt.SigningMethodHS256, Jwtc)
-	return t.SignedString(global.CONFIG.JWT.SigningKey)
+	return t.SignedString([]byte(global.CONFIG.JWT.SigningKey))
 }

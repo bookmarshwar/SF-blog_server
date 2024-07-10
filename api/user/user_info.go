@@ -5,6 +5,7 @@ import (
 	"blog_server/models"
 	"blog_server/models/res"
 	"blog_server/service"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,19 +15,21 @@ func (UserApi) Loggin(c *gin.Context) {
 	c.BindJSON(&user)
 	db := global.DB
 	var TrueUser models.UserModel
-	db.Where("UserName =?", user.Telephone).First(&TrueUser)
+	db.Where("user_name =?", user.UserName).First(&TrueUser)
 	if TrueUser.ID == 0 {
 		res.FailMessage("用户不存在", c)
+		return
 	}
 	if user.Password == TrueUser.Password {
 		token, error := service.CreateToken(&TrueUser)
 		if error != nil {
-			res.FailMessage("蜜汁错误", c)
+			res.FailMessage(fmt.Sprintln("蜜汁错误%s", error.Error()), c)
+			return
 		}
 		res.SucceesWithData(map[string]string{
 			"token": token,
 		}, c)
-		res.SucceesMessage("登录成功", c)
+		return
 	}
 	res.FailMessage("密码错误", c)
 }
