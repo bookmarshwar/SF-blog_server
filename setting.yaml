@@ -16,6 +16,6 @@ system:
   port: 8080
   env: dev
 jwt:
-  deadtime: 3600 
+  deadtime: 5
   signingkey: folk is fucking stand
   

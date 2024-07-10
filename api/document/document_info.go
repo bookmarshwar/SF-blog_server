@@ -43,10 +43,12 @@ func (DocumentApi) UpDocument(c *gin.Context) {
 	filePath, err := service.Savefile(file, "./res/md_file/")
 	if err != nil {
 		res.FailMessage(fmt.Sprintf("上传文件 'file' 时出错：%s", err.Error()), c)
+		return
 	}
 	cover, err := c.FormFile("cover")
 	if err != nil {
 		res.FailMessage(fmt.Sprintf("上传文件 'file' 时出错：%s", err.Error()), c)
+		return
 	}
 	coverPath, err := service.Savefile(cover, "./res/cover_file/")
 	name := c.PostForm("name")

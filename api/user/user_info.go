@@ -5,7 +5,6 @@ import (
 	"blog_server/models"
 	"blog_server/models/res"
 	"blog_server/service"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +22,7 @@ func (UserApi) Loggin(c *gin.Context) {
 	if user.Password == TrueUser.Password {
 		token, error := service.CreateToken(&TrueUser)
 		if error != nil {
-			res.FailMessage(fmt.Sprintln("蜜汁错误%s", error.Error()), c)
+			res.FailMessage("蜜汁错误", c)
 			return
 		}
 		res.SucceesWithData(map[string]string{

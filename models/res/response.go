@@ -23,6 +23,7 @@ func Result(code int, data any, msg string, c *gin.Context) {
 		Data: data,
 		Msg:  msg,
 	})
+	c.Abort()
 }
 func Succees(data any, msg string, c *gin.Context) {
 	Result(SUCCEES, data, msg, c)

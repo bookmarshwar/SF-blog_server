@@ -1,6 +1,7 @@
 package routers
 
 import (
+	"blog_server/middleware"
 	"blog_server/models/res"
 
 	"github.com/gin-gonic/gin"
@@ -14,11 +15,14 @@ func InitRouter() *gin.Engine {
 	router := gin.Default()
 	res.InitErrorCode()
 	router.Static("/res", "./res")
-	apiRouterGroup := router.Group("api")
-	routerGroupApp := RouterGroup{apiRouterGroup}
+	SignApiRouterGroup := router.Group("api")
+	NoSignApiRouterGroup := router.Group("api")
+	noSignRouterGroupApp := RouterGroup{NoSignApiRouterGroup}
+	routerGroupApp := RouterGroup{SignApiRouterGroup}
+	routerGroupApp.Use(middleware.JWTAuth())
 	routerGroupApp.SettingRouter()
 	routerGroupApp.MarkdownhtmRouter()
 	routerGroupApp.DocumentRouter()
-	routerGroupApp.UserRouter()
+	noSignRouterGroupApp.UserRouter()
 	return router
 }
